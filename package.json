@@ -16,7 +16,7 @@
       "jsdom-quokka-plugin"
     ],
     "jsdom": {
-      "file": "test.html"
+      "file": "html/test.html"
     }
   },
   "devDependencies": {
