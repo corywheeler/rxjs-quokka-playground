@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jsdom-quokka-plugin": "^1.0.15"
+    "jsdom-quokka-plugin": "^1.0.15",
+    "rxjs": "^6.5.5"
   },
   "quokka": {
-    "plugins": ["jsdom-quokka-plugin"],
+    "plugins": [
+      "jsdom-quokka-plugin"
+    ],
     "jsdom": {
       "file": "test.html"
     }
