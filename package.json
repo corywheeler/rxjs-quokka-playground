@@ -1,0 +1,24 @@
+{
+  "name": "rxjs-quokka-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom-quokka-plugin": "^1.0.15"
+  },
+  "quokka": {
+    "plugins": ["jsdom-quokka-plugin"],
+    "jsdom": {
+      "file": "test.html"
+    }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3"
+  }
+}
