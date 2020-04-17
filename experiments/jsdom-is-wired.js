@@ -1,3 +1,3 @@
-const testDiv = document.getElementById('testDiv');
+const testDiv = document.getElementById('howdy');
 
 testDiv.textContent //?
