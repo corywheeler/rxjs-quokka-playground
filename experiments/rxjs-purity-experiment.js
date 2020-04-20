@@ -4,6 +4,9 @@
 import { fromEvent } from 'rxjs';
 import { scan } from 'rxjs/operators';
 
+/*
+ * Set up a click handler for use in showing the traditional way of click handling.
+ */
 const oldSchoolClickedHandler = () => console.log(`Old School Clicked ${++firstCount} times`);
 
 /*
@@ -17,7 +20,7 @@ document.addEventListener('click', oldSchoolClickedHandler);
 /*
  * Now fire some events
  */
-let clickEvent = new window.Event('click');
+const clickEvent = new window.Event('click');
 
 for (let i = 0; i < 3; i++) {
 	document.dispatchEvent(clickEvent);
