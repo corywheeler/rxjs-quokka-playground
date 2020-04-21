@@ -47,7 +47,7 @@ const clickSubscription = fromEvent(document, 'click')
 		throttleTime(2000),
 		scan(count => count + 1, 0)
 	)
-	.subscribe(count => console.log(`Clicked ${count} times`));
+	.subscribe(count => console.log(`RxJS Clicked ${count} times`));
 
 // set up an interval that will execute every 100 milliseconds
 const intervalObservable = interval(100);
