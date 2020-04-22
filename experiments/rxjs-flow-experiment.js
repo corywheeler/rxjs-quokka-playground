@@ -57,7 +57,7 @@ const intervalSubscription = intervalObservable.subscribe(val => {
 	document.dispatchEvent(clickEvent)
 });
 
-// turn off the subscriptions after 10 seconds.
+// turn off the subscriptions after 10 seconds, thus ending the program
 setTimeout(() => {
 	intervalSubscription.unsubscribe();
 	clickSubscription.unsubscribe();
