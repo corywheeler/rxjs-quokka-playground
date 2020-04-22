@@ -6,7 +6,8 @@ import { throttleTime, map, scan } from "rxjs/operators";
  */
 
 /*
- * Here's how you can add the current mouse x position for every click, in plain JavaScript
+ * Here's how you can add the current mouse x position for every click, in plain JavaScript.
+ * Even though we dispacth 50 events, only 5 are recorded... one for every 10 iterations.
  */
 
 // Create random integers between 0 and highestValue parameter
@@ -39,10 +40,10 @@ document.addEventListener('click', oldSchoolClickedHandler);
 const dispatchEventsForOldWay = async () => {
 	const clickEvent = new window.Event('click');
 
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < 50; i++) {
 		clickEvent.clientX = getRandomInt(5000);
 		document.dispatchEvent(clickEvent);
-		await sleep(2000);
+		await sleep(100);
 	}
 }
 
