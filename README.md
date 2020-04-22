@@ -1,5 +1,5 @@
 # Overview
-I needed a place to play around with RxJS and wanted one where my experiments would be durable. This has started out as really just coding out the Overview examples from the RxJS website. They've been embellished a little bit, but the meet of them is from the Overview. 
+I needed a place to play around with RxJS and wanted one where my experiments would be durable. This has started out as really just coding out the [Overview examples](https://rxjs-dev.firebaseapp.com/guide/overview) from the RxJS website. They've been embellished a little bit, but the meat of them is from the Overview. 
 
 I intend to grow the experiments as long as my interest holds and I have time to invest in learning more.
 
