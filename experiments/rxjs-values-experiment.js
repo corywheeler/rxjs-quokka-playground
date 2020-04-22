@@ -1,3 +1,6 @@
+import {fromEvent, interval} from "rxjs";
+import { throttleTime, map, scan } from "rxjs/operators";
+
 /*
  * You can transform the values passed through your observables.
  */
@@ -26,12 +29,12 @@ const oldSchoolClickedHandler = event => {
 
 	if(Date.now() - lastClick >= maximumClickRateInMilliseconds) {
 		sumOfXPositions += event.clientX;
-		console.log(`Sum of x-position's ${sumOfXPositions}`);
+		console.log(`Old School Sum of x-position's ${sumOfXPositions}`);
 		lastClick = Date.now();
 	}
 }
 
-document.addEventListener('click', oldSchoolClickedHandler)
+document.addEventListener('click', oldSchoolClickedHandler);
 
 const dispatchEventsForOldWay = async () => {
 	const clickEvent = new window.Event('click');
@@ -44,12 +47,38 @@ const dispatchEventsForOldWay = async () => {
 }
 
 // run the old way, and clean up the click handler
-const runOldWay = async () => {
+const runTheOldWay = async () => {
 	await dispatchEventsForOldWay();
 	document.removeEventListener('click', oldSchoolClickedHandler);
 }
 
-runOldWay();
+await runTheOldWay();
 
+/*
+ * This is how the same would be accomplished in RxJS. This will only record 5 clicks (one every 2 seconds)
+ * even though the interval is set up to fire every 100 milliseconds. The throttle in the pipe is throttling
+ * out the additional clicks.
+ */
+const clickSubscription = fromEvent(document, 'click')
+	.pipe(
+		throttleTime(2000),
+		map(event => event.clientX),
+		scan((count, clientX) => count + clientX, 0)
+	)
+	.subscribe(count => console.log(`RxJS Sum of x-positions ${count}`));
 
+// set up an interval that will execute every 100 milliseconds
+const intervalObservable = interval(100);
 
+// dispatch the events every 100 milliseconds
+const intervalSubscription = intervalObservable.subscribe(val => {
+	const clickEvent = new window.Event('click');
+	clickEvent.clientX = getRandomInt(5000);
+	document.dispatchEvent(clickEvent)
+});
+
+// turn off the subscriptions after 10 seconds, thus ending the program
+setTimeout(() => {
+	intervalSubscription.unsubscribe();
+	clickSubscription.unsubscribe();
+}, 10000)
