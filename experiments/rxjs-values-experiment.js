@@ -23,9 +23,9 @@ const sleep = milliseconds => {
 // from click events passed into it.
 let sumOfXPositions = 0;
 const maximumClickRateInMilliseconds = 1000;
+let lastClick = Date.now() - maximumClickRateInMilliseconds;
 
 const oldSchoolClickedHandler = event => {
-	let lastClick = Date.now() - maximumClickRateInMilliseconds;
 
 	if(Date.now() - lastClick >= maximumClickRateInMilliseconds) {
 		sumOfXPositions += event.clientX;
