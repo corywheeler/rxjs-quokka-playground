@@ -3,6 +3,11 @@ I needed a place to play around with RxJS and wanted one where my experiments wo
 
 I intend to grow the experiments as long as my interest holds and I have time to invest in learning more.
 
+## Requirements
+
+You must have the [Quokka](https://quokkajs.com/) plugin for your environment to run these the way I've configured this project for. You can also
+run them in some other way if you like... for me... I'll take Quokka.
+
 ## Sources
 These are some of the resources that were used in putting this playground together.
 
