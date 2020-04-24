@@ -64,7 +64,7 @@ const clickSubscription = fromEvent(document, 'click')
 	.pipe(
 		throttleTime(2000),
 		map(event => event.clientX),
-		scan((count, clientX) => count + clientX, 0)
+		scan((sum, clientX) => sum + clientX, 0)
 	)
 	.subscribe(count => console.log(`RxJS Sum of x-positions ${count}`));
 
