@@ -5,6 +5,7 @@
 
 import { fromEvent, interval } from 'rxjs';
 import { scan, throttleTime } from 'rxjs/operators';
+import {sleep} from '~lib/sleep';
 
 /*
  * Using the traditional way, this is how you would allow at most one click per second
@@ -25,10 +26,15 @@ document.addEventListener('click', oldSchoolClickedHandler);
 //Now fire some events
 const clickEvent = new window.Event('click');
 
+// There will be 10 iterations of this for loop before the second click is registered by the click handler,
+// and 10 iterations before each of the successive clicks are registered by the click handler. The sleep delays
+// the next run of the the loop by 100 milliseconds... giving us 10 iterations per click.
+
 let loopCounter = 0;
-let loopControl = 900000;
+let loopControl = 50;
 for (loopCounter; loopCounter < loopControl; loopCounter++) {
 	document.dispatchEvent(clickEvent);
+	await sleep(100);
 }
 
 console.log(`The loop ran ${loopCounter} times. Adjust the loop control to a larger value if you only saw it run once.`);
