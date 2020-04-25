@@ -50,7 +50,7 @@ document.removeEventListener('click', oldSchoolClickedHandler);
 
 const clickSubscription = fromEvent(document, 'click')
 	.pipe(
-		throttleTime(2000),
+		throttleTime(1000),
 		scan(count => count + 1, 0)
 	)
 	.subscribe(count => console.log(`RxJS Clicked ${count} times`));
@@ -67,4 +67,4 @@ const intervalSubscription = intervalObservable.subscribe(val => {
 setTimeout(() => {
 	intervalSubscription.unsubscribe();
 	clickSubscription.unsubscribe();
-	}, 10000)
+	}, 5000)
