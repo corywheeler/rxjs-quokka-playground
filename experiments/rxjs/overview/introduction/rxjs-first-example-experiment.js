@@ -4,6 +4,7 @@
  */
 
 import { fromEvent } from 'rxjs';
+import { sleep } from '~lib/sleep';
 
 /*
  * This is how you would have listened for an event without RxJS
@@ -19,6 +20,7 @@ const clickEvent = new window.Event('click');
 
 for (let i = 0; i < 3; i++) {
 	document.dispatchEvent(clickEvent);
+	await sleep(500);
 }
 
 // Unbind the oldSchoolClickedHandler event listener so we can see the RxJS handler in isolation.
@@ -32,6 +34,7 @@ const clickSubscription = fromEvent(document, 'click').subscribe(() => console.l
 // Now fire some events.
 for (let i = 0; i < 3; i++) {
 	document.dispatchEvent(clickEvent);
+	await sleep(500);
 }
 
 // Unsubscribe from the RxJS subscription for the click event.
