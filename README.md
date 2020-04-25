@@ -17,10 +17,11 @@ run them in some other way if you like... for me... I'll take Quokka.
 
 ## Setup
 
-You must run the following to set up symlinks used for aliasing file and directory paths
+Run the following from the root directory of your project. This will install any dependancies that the project needs
+as well as the pre and post install scripts to set up link-module-alias.
 
 ```$xslt
-npm run postinstall
+npm install
 ```
 
 ## Sources
