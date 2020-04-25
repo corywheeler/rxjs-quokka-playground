@@ -1,5 +1,6 @@
 import {fromEvent, interval} from "rxjs";
 import { throttleTime, map, scan } from "rxjs/operators";
+import { sleep } from '../../../common/sleep';
 
 /*
  * You can transform the values passed through your observables.
@@ -13,11 +14,6 @@ import { throttleTime, map, scan } from "rxjs/operators";
 // Create random integers between 0 and highestValue parameter
 const getRandomInt = highestValue => {
 	return Math.floor(Math.random() * Math.floor(highestValue));
-}
-
-// sleep function used to control the rate limit for clicks
-const sleep = milliseconds => {
-	return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
 // Set up an old school click handler that will record the sum of the x positions
