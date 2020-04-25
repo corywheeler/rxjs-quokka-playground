@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "command -v link-module-alias && link-module-alias clean || true",
     "postinstall": "link-module-alias"
   },
   "author": "",
@@ -13,8 +14,8 @@
     "rxjs": "^6.5.5"
   },
   "_moduleAliases": {
-    "~root"      : ".",
-    "~lib"      : "experiments/lib"
+    "~root": ".",
+    "~lib": "experiments/lib"
   },
   "quokka": {
     "plugins": [
