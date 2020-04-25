@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "link-module-alias"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "jsdom-quokka-plugin": "^1.0.15",
     "rxjs": "^6.5.5"
+  },
+  "_moduleAliases": {
+    "~root"      : ".",
+    "~lib"      : "experiments/lib"
   },
   "quokka": {
     "plugins": [
@@ -18,5 +23,8 @@
     "jsdom": {
       "file": "html/index.html"
     }
+  },
+  "devDependencies": {
+    "link-module-alias": "^1.2.0"
   }
 }

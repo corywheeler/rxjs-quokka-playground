@@ -1,6 +1,6 @@
 import {fromEvent, interval} from "rxjs";
 import { throttleTime, map, scan } from "rxjs/operators";
-import { sleep } from '../../../common/sleep';
+import { sleep } from '~lib/sleep';
 
 /*
  * You can transform the values passed through your observables.
