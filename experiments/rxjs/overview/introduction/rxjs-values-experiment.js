@@ -1,6 +1,7 @@
-import {fromEvent, interval} from "rxjs";
-import { throttleTime, map, scan } from "rxjs/operators";
+import {fromEvent, interval} from 'rxjs';
+import { throttleTime, map, scan } from 'rxjs/operators';
 import { sleep } from '~lib/sleep';
+import { getRandomInt } from '~lib/getRandomInt';
 
 /*
  * You can transform the values passed through your observables.
@@ -10,11 +11,6 @@ import { sleep } from '~lib/sleep';
  * Here's how you can add the current mouse x position for every click, in plain JavaScript.
  * Even though we dispacth 50 events, only 5 are recorded... one for every 10 iterations.
  */
-
-// Create random integers between 0 and highestValue parameter
-const getRandomInt = highestValue => {
-	return Math.floor(Math.random() * Math.floor(highestValue));
-}
 
 // Set up an old school click handler that will record the sum of the x positions
 // from click events passed into it.
