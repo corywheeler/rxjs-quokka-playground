@@ -15,6 +15,14 @@ The structure of the source code will very much follow the menuing system you se
 You must have the [Quokka](https://quokkajs.com/) plugin for your environment to run these the way I've configured this project for. You can also
 run them in some other way if you like... for me... I'll take Quokka.
 
+## Setup
+
+You must run the following to set up symlinks used for aliasing file and directory paths
+
+```$xslt
+npm run postinstall
+```
+
 ## Sources
 These are some of the resources that were used in putting this playground together.
 
