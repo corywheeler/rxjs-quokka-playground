@@ -18,8 +18,9 @@ run them in some other way if you like... for me... I'll take Quokka.
 ## Sources
 These are some of the resources that were used in putting this playground together.
 
-1. [RxJS](https://rxjs-dev.firebaseapp.com/)
+1. [RxJS Website](https://rxjs-dev.firebaseapp.com/)
     1. [RxJS - Overview](https://rxjs-dev.firebaseapp.com/guide/overview)
+1. [Learn RxJS](https://www.learnrxjs.io/)
 1. [jsdom](https://github.com/jsdom/jsdom)
 1. [Quokka](https://quokkajs.com/)
     1. [Quokka - jsdom plugin](https://github.com/wallabyjs/jsdom-quokka-plugin)
