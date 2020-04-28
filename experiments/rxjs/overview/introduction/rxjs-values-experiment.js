@@ -54,7 +54,7 @@ await runTheOldWay();
  */
 const clickSubscription = fromEvent(document, 'click')
 	.pipe(
-		throttleTime(2000),
+		throttleTime(1000),
 		map(event => event.clientX),
 		scan((sum, clientX) => sum + clientX, 0)
 	)
@@ -70,8 +70,8 @@ const intervalSubscription = intervalObservable.subscribe(val => {
 	document.dispatchEvent(clickEvent)
 });
 
-// turn off the subscriptions after 10 seconds, thus ending the program
+// turn off the subscriptions after 5 seconds, thus ending the program
 setTimeout(() => {
 	intervalSubscription.unsubscribe();
 	clickSubscription.unsubscribe();
-}, 10000)
+}, 5000)
