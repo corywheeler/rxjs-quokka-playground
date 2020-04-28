@@ -67,4 +67,4 @@ const intervalSubscription = intervalObservable.subscribe(val => {
 setTimeout(() => {
 	intervalSubscription.unsubscribe();
 	clickSubscription.unsubscribe();
-	}, 5000)
+	}, 5000);
