@@ -3,6 +3,7 @@
 
 import { fromEvent } from 'rxjs';
 import { scan } from 'rxjs/operators';
+import { sleep } from "~lib/sleep";
 
 /*
  * Without RxJS you would create an impure function, where other pieces of your code can mess up your state.
@@ -20,6 +21,7 @@ const clickEvent = new window.Event('click');
 
 for (let i = 0; i < 3; i++) {
 	document.dispatchEvent(clickEvent);
+	await sleep(500);
 }
 
 // Unbind the oldSchoolClickedHandler event listener so we can see the RxJS handler in isolation.
@@ -36,6 +38,7 @@ const clickSubscription = fromEvent(document, 'click')
 // Now fire some more events
 for (let i = 0; i < 3; i++) {
 	document.dispatchEvent(clickEvent);
+	await sleep(500);
 }
 
 // Unsubscribe from the RxJS subscription for the click event.
