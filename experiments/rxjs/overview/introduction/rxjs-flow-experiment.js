@@ -6,6 +6,7 @@
 import { fromEvent, interval } from 'rxjs';
 import { scan, throttleTime } from 'rxjs/operators';
 import {sleep} from '~lib/sleep';
+import { unsubscribeAfterDuration } from '~lib/unsubscribeAfterDuration';
 
 /*
  * Using the traditional way, this is how you would allow at most one click per second
@@ -64,7 +65,4 @@ const intervalSubscription = intervalObservable.subscribe(val => {
 });
 
 // turn off the subscriptions after 5 seconds, thus ending the program
-setTimeout(() => {
-	intervalSubscription.unsubscribe();
-	clickSubscription.unsubscribe();
-	}, 5000);
+unsubscribeAfterDuration(5000, [intervalSubscription, clickSubscription]);

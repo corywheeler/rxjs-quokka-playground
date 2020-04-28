@@ -2,6 +2,7 @@ import {fromEvent, interval} from 'rxjs';
 import { throttleTime, map, scan } from 'rxjs/operators';
 import { sleep } from '~lib/sleep';
 import { getRandomInt } from '~lib/getRandomInt';
+import { unsubscribeAfterDuration } from '~lib/unsubscribeAfterDuration';
 
 /*
  * You can transform the values passed through your observables.
@@ -71,7 +72,4 @@ const intervalSubscription = intervalObservable.subscribe(val => {
 });
 
 // turn off the subscriptions after 5 seconds, thus ending the program
-setTimeout(() => {
-	intervalSubscription.unsubscribe();
-	clickSubscription.unsubscribe();
-}, 5000);
+unsubscribeAfterDuration(5000, [intervalSubscription, clickSubscription]);
