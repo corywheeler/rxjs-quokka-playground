@@ -30,13 +30,11 @@ const oldSchoolClickedHandler = () => {
 
 document.addEventListener('click', oldSchoolClickedHandler);
 
-let loopCounter = 0;
-for (loopCounter; loopCounter < totalClicksToTake; loopCounter++) {
+let clickCounter = 0;
+for (clickCounter; clickCounter < totalClicksToTake; clickCounter++) {
 	document.dispatchEvent(clickEvent);
 	await sleep(clickTimingInMilliseconds);
 }
-
-console.log(`The loop ran ${loopCounter} times. Adjust the loop control to a larger value if you only saw it run once.`);
 
 // Unbind the oldSchoolClickedHandler event listener so we can see the RxJS handler in isolation.
 document.removeEventListener('click', oldSchoolClickedHandler);
