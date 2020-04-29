@@ -47,8 +47,7 @@ document.removeEventListener('click', oldSchoolClickedHandler);
 
 /*
  * RxJS has a whole range of operators that helps you control how the events flow through your observables.
- * Here is an example showing throttle and scan. This will only record 5 clicks (one every 2 seconds)
- * even though the interval is set up to fire every 100 milliseconds.
+ * Here is an example showing throttle and scan.
  */
 
 const clickSubscription = fromEvent(document, 'click')
