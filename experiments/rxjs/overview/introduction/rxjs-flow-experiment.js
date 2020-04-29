@@ -30,10 +30,6 @@ const oldSchoolClickedHandler = () => {
 
 document.addEventListener('click', oldSchoolClickedHandler);
 
-// There will be 10 iterations of this for loop before the second click is registered by the click handler,
-// and 10 iterations before each of the successive clicks are registered by the click handler. The sleep delays
-// the next run of the the loop by 100 milliseconds... giving us 10 iterations per click.
-
 let loopCounter = 0;
 for (loopCounter; loopCounter < totalClicksToTake; loopCounter++) {
 	document.dispatchEvent(clickEvent);
