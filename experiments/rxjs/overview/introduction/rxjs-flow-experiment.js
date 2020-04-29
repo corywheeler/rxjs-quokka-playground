@@ -4,19 +4,25 @@
  */
 
 import { fromEvent, interval } from 'rxjs';
-import { scan, throttleTime } from 'rxjs/operators';
+import { scan, take, throttleTime } from 'rxjs/operators';
 import {sleep} from '~lib/sleep';
 import { unsubscribeAfterDuration } from '~lib/unsubscribeAfterDuration';
+
+// Common control variables
+const clicksToRecord = 5;
+const totalClicksToTake = clicksToRecord * 10;
+const clickEvent = new window.Event('click');
+const throttleTimeMilliseconds = 1000;
+const clickTimingInMilliseconds = 100;
 
 /*
  * Using the traditional way, this is how you would allow at most one click per second
  */
 let count = 0;
-let rate = 1000;
-let lastClick = Date.now() - rate;
+let lastClick = Date.now() - throttleTimeMilliseconds;
 
 const oldSchoolClickedHandler = () => {
-	if (Date.now() - lastClick >= rate) {
+	if (Date.now() - lastClick >= throttleTimeMilliseconds) {
 		console.log(`Old School Clicked ${++count} times`);
 		lastClick = Date.now();
 	}
@@ -24,18 +30,14 @@ const oldSchoolClickedHandler = () => {
 
 document.addEventListener('click', oldSchoolClickedHandler);
 
-//Now fire some events
-const clickEvent = new window.Event('click');
-
 // There will be 10 iterations of this for loop before the second click is registered by the click handler,
 // and 10 iterations before each of the successive clicks are registered by the click handler. The sleep delays
 // the next run of the the loop by 100 milliseconds... giving us 10 iterations per click.
 
 let loopCounter = 0;
-let loopControl = 50;
-for (loopCounter; loopCounter < loopControl; loopCounter++) {
+for (loopCounter; loopCounter < totalClicksToTake; loopCounter++) {
 	document.dispatchEvent(clickEvent);
-	await sleep(100);
+	await sleep(clickTimingInMilliseconds);
 }
 
 console.log(`The loop ran ${loopCounter} times. Adjust the loop control to a larger value if you only saw it run once.`);
@@ -51,18 +53,16 @@ document.removeEventListener('click', oldSchoolClickedHandler);
 
 const clickSubscription = fromEvent(document, 'click')
 	.pipe(
-		throttleTime(1000),
+		throttleTime(throttleTimeMilliseconds),
 		scan(count => count + 1, 0)
 	)
 	.subscribe(count => console.log(`RxJS Clicked ${count} times`));
 
-// set up an interval that will execute every 100 milliseconds
-const intervalObservable = interval(100);
+const clickDispatchObservable = interval(clickTimingInMilliseconds)
+							.pipe(take(totalClicksToTake));
 
-// dispatch the events every 100 milliseconds
-const intervalSubscription = intervalObservable.subscribe(val => {
-	document.dispatchEvent(clickEvent)
-});
+const clickDispatchSubscription = clickDispatchObservable.subscribe(val => { document.dispatchEvent(clickEvent) });
 
-// turn off the subscriptions after 5 seconds, thus ending the program
-unsubscribeAfterDuration(5000, [intervalSubscription, clickSubscription]);
+// turn off the subscriptions, thus ending the program
+const unsubscriptionMilliseconds = throttleTimeMilliseconds * clicksToRecord;
+unsubscribeAfterDuration(unsubscriptionMilliseconds, [clickDispatchSubscription, clickSubscription]);
