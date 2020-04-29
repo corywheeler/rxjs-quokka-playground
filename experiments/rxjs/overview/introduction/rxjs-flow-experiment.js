@@ -62,6 +62,6 @@ const clickDispatchObservable = interval(clickTimingInMilliseconds)
 
 const clickDispatchSubscription = clickDispatchObservable.subscribe(val => { document.dispatchEvent(clickEvent) });
 
-// turn off the subscriptions, thus ending the program
+// turn off the subscriptions
 const unsubscriptionMilliseconds = throttleTimeMilliseconds * clicksToRecord;
 unsubscribeAfterDuration(unsubscriptionMilliseconds, [clickDispatchSubscription, clickSubscription]);
